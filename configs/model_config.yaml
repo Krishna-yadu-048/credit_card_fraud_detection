@@ -1,0 +1,32 @@
+project:
+  name: credit-card-fraud-detection
+  version: "1.0.0"
+
+paths:
+  raw_data: data/raw/creditcard.csv
+  processed_data: data/processed/creditcard_processed.csv
+  metrics_output: data/processed/metrics.json
+  reference_data: data/processed/reference.csv
+
+mlflow:
+  tracking_uri: http://127.0.0.1:5000
+  experiment_name: fraud-detection
+  model_name: fraud-detector
+  registered_model_alias: Production
+
+model:
+  n_estimators: 300
+  max_depth: 6
+  learning_rate: 0.05
+  subsample: 0.8
+  colsample_bytree: 0.8
+  scale_pos_weight: 577
+  eval_metric: aucpr
+  random_state: 42
+
+data:
+  test_size: 0.2
+  smote_random_state: 42
+  drop_columns:
+    - Time
+  amount_log_transform: true

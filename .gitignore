@@ -1,0 +1,54 @@
+# ── data (tracked by DVC, not Git) ────────────────────────
+data/raw/
+data/processed/
+
+# ── MLflow artifacts ───────────────────────────────────────
+mlruns/
+mlartifacts/
+
+# ── Evidently reports ──────────────────────────────────────
+monitoring/dashboards/
+
+# ── environment & secrets ──────────────────────────────────
+.env
+
+# ── Python cache ───────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── testing & coverage ─────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# ── virtual environments ───────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+uv.lock
+# ── IDE files ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Jupyter checkpoints ────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Dagster home ───────────────────────────────────────────
+$DAGSTER_HOME/
+
+# ── Windows specific ───────────────────────────────────────
+desktop.ini
+ehthumbs.db

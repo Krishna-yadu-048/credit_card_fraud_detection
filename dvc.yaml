@@ -1,0 +1,39 @@
+# dvc.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# Defines the DVC pipeline stages: validate -> train -> evaluate.
+# DVC only re-runs a stage if its dependencies have changed,
+# so you don't re-train unnecessarily when only the API code changes.
+#
+# Run the full pipeline with: run.bat dvc
+# ─────────────────────────────────────────────────────────────────────────────
+
+stages:
+
+  validate:
+    cmd: uv run python -m src.validate
+    deps:
+      - src/validate.py
+      - data/raw/creditcard.csv
+      - configs/model_config.yaml
+    outs:
+      - data/processed/creditcard_processed.csv
+      - data/processed/reference.csv
+
+  train:
+    cmd: uv run python -m src.train
+    deps:
+      - src/train.py
+      - data/processed/creditcard_processed.csv
+      - configs/model_config.yaml
+    outs:
+      - data/processed/test_set.csv
+
+  evaluate:
+    cmd: uv run python -m src.evaluate
+    deps:
+      - src/evaluate.py
+      - data/processed/test_set.csv
+      - configs/model_config.yaml
+    metrics:
+      - data/processed/metrics.json:
+          cache: false
