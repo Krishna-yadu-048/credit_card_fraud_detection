@@ -1,12 +1,3 @@
-# dvc.yaml
-# ─────────────────────────────────────────────────────────────────────────────
-# Defines the DVC pipeline stages: validate -> train -> evaluate.
-# DVC only re-runs a stage if its dependencies have changed,
-# so you don't re-train unnecessarily when only the API code changes.
-#
-# Run the full pipeline with: run.bat dvc
-# ─────────────────────────────────────────────────────────────────────────────
-
 stages:
 
   validate:
